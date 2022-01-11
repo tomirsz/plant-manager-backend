@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.0-SNAPSHOT'
+	id 'org.springframework.boot' version '2.6.2'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
@@ -25,13 +25,13 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.3.3.RELEASE'
-	compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.3.3.RELEASE'
-	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
-	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
+	implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.6.1'
+	implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.6.1'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.1'
 
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.2.RELEASE'
-	compile group: 'org.flywaydb', name: 'flyway-core', version: '7.0.4'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.6.2'
+	implementation group: 'org.flywaydb', name: 'flyway-core', version: '8.4.0'
 
 }
 
