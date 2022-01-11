@@ -10,14 +10,9 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class CalendarDto {
-    @NotBlank
     private String title;
-    @NotNull
     private LocalDate start;
-    @NotNull
     private LocalDate end;
-    @NotBlank
-    @NotBlank
     private String color;
 
 }

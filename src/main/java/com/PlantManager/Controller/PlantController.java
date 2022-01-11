@@ -8,6 +8,9 @@ import com.PlantManager.Service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -21,7 +24,7 @@ public class PlantController {
     private PlantService plantService;
 
     @PostMapping(value = "/add", consumes = APPLICATION_JSON_VALUE)
-    public Plant addPlant(@RequestBody NewPlantDto plantDto) {
+    public Plant addPlant(@RequestBody @Valid NewPlantDto plantDto) {
         return plantService.addPlant(plantDto);
     }
 
@@ -29,7 +32,7 @@ public class PlantController {
     public Plant editPlant(@RequestBody Plant plant) { return plantService.editPlant(plant); }
 
     @DeleteMapping(value = "/delete")
-    public void deletePlant(@RequestParam Long id) { plantService.deletePlant(id); }
+    public void deletePlant(@RequestParam @Valid @Min(1) Long id) { plantService.deletePlant(id); }
 
     @GetMapping(value = "/find")
     public List<Plant> getAll() {
@@ -42,42 +45,51 @@ public class PlantController {
     }
 
     @GetMapping(value = "/fetchCalendar")
-    public List<CalendarDto> getCalendar(@RequestParam String dateFrom, @RequestParam String dateTo) {
+    public List<CalendarDto> getCalendar(@RequestParam @Valid @NotBlank String dateFrom,
+                                         @RequestParam @Valid @NotBlank String dateTo) {
         return plantService.getCalendar(dateFrom, dateTo);
     }
 
     @GetMapping(value = "/fetchCalendarForHistory")
-    public List<CalendarDto> getCalendar(@RequestParam String dateFrom, @RequestParam String dateTo, @RequestParam("plantId") String plantId) {
+    public List<CalendarDto> getCalendar(@RequestParam @Valid @NotBlank String dateFrom,
+                                         @RequestParam @Valid @NotBlank String dateTo,
+                                         @RequestParam("plantId") @Valid @NotBlank String plantId) {
         return plantService.getCalendar(dateFrom, dateTo, plantId);
     }
 
     @PostMapping(value = "/add/spraying", consumes = APPLICATION_JSON_VALUE)
-    public Spraying addSpraying(@RequestParam("id") Long id, @RequestBody Spraying spraying) {
+    public Spraying addSpraying(@RequestParam("id") @Valid @Min(1) Long id,
+                                @RequestBody Spraying spraying) {
         return plantService.addSpraying(id, spraying);
     }
 
     @PostMapping(value = "/add/fertilization", consumes = APPLICATION_JSON_VALUE)
-    public Fertilization addFertilization(@RequestParam("id") Long id, @RequestBody Fertilization fertilization) {
+    public Fertilization addFertilization(@RequestParam("id") @Valid @Min(1) Long id,
+                                          @RequestBody Fertilization fertilization) {
         return plantService.addFertilization(id, fertilization);
     }
 
     @PostMapping(value = "/add/formation", consumes = APPLICATION_JSON_VALUE)
-    public Formation addFormation(@RequestParam("id") Long id, @RequestBody Formation formation) {
+    public Formation addFormation(@RequestParam("id") @Valid @Min(1) Long id,
+                                  @RequestBody Formation formation) {
         return plantService.addFormation(id, formation);
     }
 
     @PostMapping(value = "/add/prune", consumes = APPLICATION_JSON_VALUE)
-    public Prune addPrune(@RequestParam("id") Long id, @RequestBody Prune prune) {
+    public Prune addPrune(@RequestParam("id") @Valid @Min(1) Long id,
+                          @RequestBody Prune prune) {
         return plantService.addPrune(id, prune);
     }
 
     @PostMapping(value = "/add/irrigation-date", consumes = APPLICATION_JSON_VALUE)
-    public IrrigationDate addIrigationDate(@RequestParam("id") Long id, @RequestBody IrrigationDate irrigationDate) {
+    public IrrigationDate addIrigationDate(@RequestParam("id") @Valid @Min(1) Long id,
+                                           @RequestBody IrrigationDate irrigationDate) {
         return plantService.addIrrigationDate(id, irrigationDate);
     }
 
     @PostMapping(value = "/add/repotting", consumes = APPLICATION_JSON_VALUE)
-    public Repotting addRepotting(@RequestParam("id") Long id, @RequestBody Repotting repotting) {
+    public Repotting addRepotting(@RequestParam("id") @Valid @Min(1) Long id,
+                                  @RequestBody Repotting repotting) {
         return plantService.addRepotting(id, repotting);
     }
 }
